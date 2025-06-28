@@ -1,0 +1,96 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ArrowLeft from "../../components/icons/ArrowLeft.astro";
+import SocialPill from "../../components/icons/SocialPill.astro";
+import SectionContainer from "../../components/SectionContainer.astro";
+import AstroIcon from "../../components/icons/AstroIcon.astro";
+import JavaScript from "../../components/icons/JavaScript.astro";
+import Node from "../../components/icons/Node.astro";
+import Tailwind from "../../components/icons/Tailwind.astro";
+import Php from "../../components/icons/Php.astro";
+import MySQL from "../../components/icons/MySQL.astro";
+import Boostrap from "../../components/icons/Boostrap.astro";
+import React from "../../components/icons/React.astro";
+import Laravel from "../../components/icons/Laravel.astro";
+import TypeScript from "../../components/icons/TypeScript.astro";
+import Netlify from "../../components/icons/Netlify.astro";
+
+// Mapeo de nombres a componentes
+const iconMap = {
+  Astro: AstroIcon,
+  JavaScript: JavaScript,
+  "Node.js": Node,
+  Tailwind: Tailwind,
+  Php: Php,
+  MySQL: MySQL,
+  Boostrap: Boostrap,
+  React: React,
+  Laravel: Laravel,
+  TypeScript: TypeScript,
+  Netlify: Netlify,
+};
+
+import { getCollection, render } from "astro:content";
+
+export async function getStaticPaths() {
+  const projects = await getCollection("projects");
+
+  return projects.map((project) => ({
+    params: { id: project.slug },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { slug, data } = project;
+const { title, description, img, link_demo, tecnologias } = data;
+
+const { Content } = await render(project);
+---
+
+<Layout title={`Proyectos - ${title}`} description={description}>
+  <SectionContainer class="mx-auto max-w-6xl py-8">
+    <div class="grid grid-cols-5 grid-rows-5 gap-2">
+      <div class="col-span-3 row-span-4 bg-amber-700">
+        <img src="/agua-maxima/agua-maxima-render-1.webp" alt={title} class="rounded w-full h-auto" />
+      </div>
+      <div class="col-span-3 col-start-1 row-start-5 bg-amber-700">
+        <!-- Mostrar tecnologías -->
+        <div class="flex gap-3 flex-wrap my-6">
+          {
+            tecnologias.map((tecnologia: string) => {
+              const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
+              return IconComponent ? (
+                <div class="flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
+                  <IconComponent class="size-5 text-gray-700 dark:text-gray-300" />
+                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
+                    {tecnologia}
+                  </span>
+                </div>
+              ) : (
+                <span class="px-3 py-2 bg-gray-100 dark:bg-gray-800 text-sm text-gray-600 dark:text-gray-400 rounded-lg">
+                  {tecnologia}
+                </span>
+              );
+            })
+          }
+        </div>
+      </div>
+      <div class="col-span-2 row-span-5 col-start-4 row-start-1 bg-amber-700 text-center">
+        <h1
+          class="animate-text-gradient inline-flex bg-gradient-to-r from-gray-900 via-gray-600 to-gray-500 bg-[200%_auto] bg-clip-text leading-tight text-transparent dark:from-neutral-100 dark:via-slate-400 dark:to-neutral-400 text-4xl"
+        >
+          {title}
+        </h1>
+        <Content />
+      </div>
+    </div>
+    <!-- Botones de navegación -->
+    <div class="flex gap-4 text-gray-900 dark:text-gray-50">
+      <SocialPill target="_self" href="/">
+        <ArrowLeft />
+        Volver
+      </SocialPill>
+    </div>
+  </SectionContainer>
+</Layout>

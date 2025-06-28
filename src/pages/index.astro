@@ -6,10 +6,6 @@ import GitHub from "../components/icons/GitHub.astro";
 import SocialPill from "../components/icons/SocialPill.astro";
 import Proyecto from "../components/Proyecto.astro";
 import Timeline from "../components/Timeline.astro";
-
-import { getCollection } from "astro:content";
-
-const projects = await getCollection("projects");
 ---
 
 <Layout
@@ -79,20 +75,6 @@ const projects = await getCollection("projects");
     <!-- Grid de proyectos -->
     <div class="grid grid-cols-3">
       <Proyecto
-        link="/proyectos/agua-maxima"
-        icono="public/agua-maxima.webp"
-        alt="yo"
-        nombre="Agua Máxima"
-        descripcion="Proyecto de una empresa de agua purificada"
-        tecnologias={["Astro", "JavaScript", "Node.js", "Tailwind"]}
-      />
-      <Proyecto
-        link="/proyectos/bimo"
-        icono="public/bimo.png"
-        alt="yo"
-        nombre="Bimo - Módulo ERP Almacenes"
-        descripcion="Proyecto de un modulo ERP para el control de inventario de una empresa"
-        tecnologias={["Php", "JavaScript", "MySQL", "Boostrap"]}
       />
     </div>
   </SectionContainer>
