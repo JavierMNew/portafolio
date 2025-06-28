@@ -1,47 +1,51 @@
-# Astro Starter Kit: Minimal
+# Portafolio Personal - Javier Montero
 
-```sh
-npm create astro@latest -- --template minimal
+Mi portafolio personal desarrollado con Astro, donde muestro mi experiencia, proyectos y habilidades como desarrollador FullStack.
+
+## 🚀 Tecnologías Utilizadas
+
+- **Astro** - Framework para sitios web estáticos
+- **Tailwind CSS** - Framework de CSS utilitario
+- **TypeScript** - Tipado estático para JavaScript
+- **Componentes Astro** - Arquitectura modular
+
+## 📁 Estructura del Proyecto
+
 ```
-
-[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/minimal)
-[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/minimal)
-[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/minimal/devcontainer.json)
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
+├── public/          # Archivos estáticos (imágenes, favicon)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/  # Componentes reutilizables
+│   │   ├── icons/   # Iconos SVG personalizados
+│   │   └── ...
+│   ├── layouts/     # Layouts de página
+│   ├── pages/       # Páginas del sitio
+│   └── styles/      # Estilos globales
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🛠️ Comandos Disponibles
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
-
-Any static assets, like images, can be placed in the `public/` directory.
-
-## 🧞 Commands
-
-All commands are run from the root of the project, from a terminal:
-
-| Command                   | Action                                           |
+| Comando                   | Acción                                           |
 | :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+| `npm install`             | Instala las dependencias                         |
+| `npm run dev`             | Inicia el servidor de desarrollo en `localhost:4321` |
+| `npm run build`           | Construye el sitio para producción en `./dist/`  |
+| `npm run preview`         | Previsualiza la build localmente                 |
 
-## 👀 Want to learn more?
+## 🎯 Características
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+- **Diseño Responsivo** - Optimizado para todos los dispositivos
+- **Tema Oscuro** - Interfaz moderna con tema oscuro
+- **Animaciones** - Efectos visuales suaves y atractivos
+- **SEO Optimizado** - Meta tags y estructura semántica
+- **Rendimiento** - Sitio estático rápido y eficiente
+
+## 📧 Contacto
+
+- **LinkedIn**: [Javier Montero](https://www.linkedin.com/in/javiermprz/)
+- **GitHub**: [JavierMNew](https://github.com/JavierMNew)
+
+---
+
+Desarrollado con ❤️ por Javier Montero
