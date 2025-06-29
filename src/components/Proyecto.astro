@@ -36,7 +36,7 @@ const projects = await getCollection("projects");
 {
   projects.map((project) => {
     const { slug, data } = project;
-    const { title, description, img, link_demo, tecnologias } = data;
+    const { title, description, logo, imgs, link_demo, tecnologias } = data;
     return (
       <div class="col-span-1 p-4">
         <a
@@ -46,7 +46,7 @@ const projects = await getCollection("projects");
           <div class="w-full rounded-2xl p-8 relative overflow-hidden">
             <div class="size-14 bg-gray-100 dark:bg-[#1c1c21] border border-solid border-gray-200 dark:border-[rgba(255,255,255,0.06)] rounded-lg justify-center items-center mb-8 flex">
               <img
-                src={img}
+                src={logo}
                 alt={title}
                 class="size-8 loading-lazy max-w-full inline-block"
               />

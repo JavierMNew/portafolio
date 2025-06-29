@@ -14,6 +14,7 @@ import React from "../../components/icons/React.astro";
 import Laravel from "../../components/icons/Laravel.astro";
 import TypeScript from "../../components/icons/TypeScript.astro";
 import Netlify from "../../components/icons/Netlify.astro";
+import ArrowRight from "../../components/icons/ArrowRight.astro";
 
 // Mapeo de nombres a componentes
 const iconMap = {
@@ -30,6 +31,15 @@ const iconMap = {
   Netlify: Netlify,
 };
 
+// Mapeo de imagenes
+const imgMap = {
+  "agua-maxima-render-1": "/agua-maxima/agua-maxima-render-1.webp",
+  "agua-maxima-render-2": "/agua-maxima/agua-maxima-render-2.webp",
+  "agua-maxima-render-3": "/agua-maxima/agua-maxima-render-3.webp",
+  "bimo-render-1": "/bimo/bimo-render-1.webp",
+  "bimo-render-2": "/bimo/bimo-render-2.webp",
+};
+
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -43,46 +53,211 @@ export async function getStaticPaths() {
 
 const { project } = Astro.props;
 const { slug, data } = project;
-const { title, description, img, link_demo, tecnologias } = data;
+const { title, description, imgs, link_demo, tecnologias } = data;
 
 const { Content } = await render(project);
 ---
 
 <Layout title={`Proyectos - ${title}`} description={description}>
-  <SectionContainer class="mx-auto max-w-6xl py-8">
+  <SectionContainer class="mx-auto max-w-7xl">
     <div class="grid grid-cols-5 grid-rows-5 gap-2">
-      <div class="col-span-3 row-span-4 bg-amber-700">
-        <img src="/agua-maxima/agua-maxima-render-1.webp" alt={title} class="rounded w-full h-auto" />
-      </div>
-      <div class="col-span-3 col-start-1 row-start-5 bg-amber-700">
-        <!-- Mostrar tecnologías -->
-        <div class="flex gap-3 flex-wrap my-6">
-          {
-            tecnologias.map((tecnologia: string) => {
-              const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
-              return IconComponent ? (
-                <div class="flex items-center gap-2 px-3 py-2 bg-gray-100 dark:bg-gray-800 rounded-lg">
-                  <IconComponent class="size-5 text-gray-700 dark:text-gray-300" />
-                  <span class="text-sm font-medium text-gray-700 dark:text-gray-300">
-                    {tecnologia}
-                  </span>
-                </div>
-              ) : (
-                <span class="px-3 py-2 bg-gray-100 dark:bg-gray-800 text-sm text-gray-600 dark:text-gray-400 rounded-lg">
-                  {tecnologia}
-                </span>
-              );
-            })
-          }
+      <div class="col-span-3 row-span-4">
+        <div class="relative w-full rounded-2xl overflow-hidden">
+          <div id={`carousel-${slug}`} class="flex overflow-x-auto snap-x snap-mandatory scrollbar-hide" style="scroll-behavior: smooth;">
+            {
+              imgs.map((img: string, index: number) => {
+                return (
+                  <div class="flex-none w-full snap-start" id={`slide-${slug}-${index + 1}`}>
+                    <img
+                      src={imgMap[img as keyof typeof imgMap]}
+                      alt={title}
+                      class="w-full h-auto object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                );
+              })
+            }
+          </div>
+          
+          <!-- Botones de navegación -->
+          <div class="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between pointer-events-none">
+            <button 
+              onclick={`
+                const carousel = document.getElementById('carousel-${slug}');
+                const currentScroll = carousel.scrollLeft;
+                const slideWidth = carousel.offsetWidth;
+                const totalSlides = ${imgs.length};
+                const currentSlide = Math.round(currentScroll / slideWidth);
+                
+                if (currentSlide <= 0) {
+                  carousel.scrollTo({left: slideWidth * (totalSlides - 1), behavior: 'smooth'});
+                } else {
+                  carousel.scrollBy({left: -slideWidth, behavior: 'smooth'});
+                }
+              `}
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all duration-200 pointer-events-auto cursor-pointer"
+            >
+              <ArrowLeft class="w-5 h-5" />
+            </button>
+            <button 
+              onclick={`
+                const carousel = document.getElementById('carousel-${slug}');
+                const currentScroll = carousel.scrollLeft;
+                const slideWidth = carousel.offsetWidth;
+                const totalSlides = ${imgs.length};
+                const currentSlide = Math.round(currentScroll / slideWidth);
+                
+                if (currentSlide >= totalSlides - 1) {
+                  carousel.scrollTo({left: 0, behavior: 'smooth'});
+                } else {
+                  carousel.scrollBy({left: slideWidth, behavior: 'smooth'});
+                }
+              `}
+              class="flex items-center justify-center w-10 h-10 rounded-full bg-black/50 hover:bg-black/70 text-white transition-all duration-200 pointer-events-auto cursor-pointer"
+            >
+              <ArrowRight class="w-5 h-5" />
+            </button>
+          </div>
         </div>
       </div>
-      <div class="col-span-2 row-span-5 col-start-4 row-start-1 bg-amber-700 text-center">
+      <div class="col-span-3 col-start-2 row-start-5 flex flex-col justify-center items-center">
+        <!-- Mostrar tecnologías con movimiento infinito -->
+        <div class="w-full overflow-hidden my-4">
+          <div class="flex gap-4 animate-scroll-left">
+            <!-- Repeticiones múltiples para asegurar efecto infinito con pocas tecnologías -->
+            <div class="flex gap-4 flex-shrink-0">
+              {
+                tecnologias.map((tecnologia: string) => {
+                  const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
+                  return IconComponent ? (
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-md whitespace-nowrap flex-shrink-0">
+                      <IconComponent class="size-4 text-gray-700 dark:text-gray-300" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">
+                        {tecnologia}
+                      </span>
+                    </div>
+                  ) : (
+                    <span class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-md whitespace-nowrap flex-shrink-0">
+                      {tecnologia}
+                    </span>
+                  );
+                })
+              }
+            </div>
+            <div class="flex gap-4 flex-shrink-0">
+              {
+                tecnologias.map((tecnologia: string) => {
+                  const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
+                  return IconComponent ? (
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-md whitespace-nowrap flex-shrink-0">
+                      <IconComponent class="size-4 text-gray-700 dark:text-gray-300" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">
+                        {tecnologia}
+                      </span>
+                    </div>
+                  ) : (
+                    <span class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-md whitespace-nowrap flex-shrink-0">
+                      {tecnologia}
+                    </span>
+                  );
+                })
+              }
+            </div>
+            <div class="flex gap-4 flex-shrink-0">
+              {
+                tecnologias.map((tecnologia: string) => {
+                  const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
+                  return IconComponent ? (
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-md whitespace-nowrap flex-shrink-0">
+                      <IconComponent class="size-4 text-gray-700 dark:text-gray-300" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">
+                        {tecnologia}
+                      </span>
+                    </div>
+                  ) : (
+                    <span class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-md whitespace-nowrap flex-shrink-0">
+                      {tecnologia}
+                    </span>
+                  );
+                })
+              }
+            </div>
+            <div class="flex gap-4 flex-shrink-0">
+              {
+                tecnologias.map((tecnologia: string) => {
+                  const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
+                  return IconComponent ? (
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-md whitespace-nowrap flex-shrink-0">
+                      <IconComponent class="size-4 text-gray-700 dark:text-gray-300" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">
+                        {tecnologia}
+                      </span>
+                    </div>
+                  ) : (
+                    <span class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-md whitespace-nowrap flex-shrink-0">
+                      {tecnologia}
+                    </span>
+                  );
+                })
+              }
+            </div>
+            <div class="flex gap-4 flex-shrink-0">
+              {
+                tecnologias.map((tecnologia: string) => {
+                  const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
+                  return IconComponent ? (
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-md whitespace-nowrap flex-shrink-0">
+                      <IconComponent class="size-4 text-gray-700 dark:text-gray-300" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">
+                        {tecnologia}
+                      </span>
+                    </div>
+                  ) : (
+                    <span class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-md whitespace-nowrap flex-shrink-0">
+                      {tecnologia}
+                    </span>
+                  );
+                })
+              }
+            </div>
+            <div class="flex gap-4 flex-shrink-0">
+              {
+                tecnologias.map((tecnologia: string) => {
+                  const IconComponent = iconMap[tecnologia as keyof typeof iconMap];
+                  return IconComponent ? (
+                    <div class="flex items-center gap-1.5 px-3 py-1.5 bg-gray-100 dark:bg-gray-800 rounded-md whitespace-nowrap flex-shrink-0">
+                      <IconComponent class="size-4 text-gray-700 dark:text-gray-300" />
+                      <span class="text-xs font-medium text-gray-700 dark:text-gray-300">
+                        {tecnologia}
+                      </span>
+                    </div>
+                  ) : (
+                    <span class="px-3 py-1.5 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded-md whitespace-nowrap flex-shrink-0">
+                      {tecnologia}
+                    </span>
+                  );
+                })
+              }
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-span-2 row-span-4 col-start-4 row-start-1">
         <h1
           class="animate-text-gradient inline-flex bg-gradient-to-r from-gray-900 via-gray-600 to-gray-500 bg-[200%_auto] bg-clip-text leading-tight text-transparent dark:from-neutral-100 dark:via-slate-400 dark:to-neutral-400 text-4xl"
         >
           {title}
         </h1>
-        <Content />
+        <div class="prose dark:prose-invert">
+          <Content />
+        </div>
+        <div class="flex gap-4 text-gray-900 dark:text-gray-50">
+          <SocialPill target="_blank" href={link_demo}>
+            Ver demo
+            <ArrowRight />
+          </SocialPill>
+        </div>
       </div>
     </div>
     <!-- Botones de navegación -->
