@@ -3,7 +3,7 @@ import AstroIcon from "./icons/AstroIcon.astro";
 import JavaScript from "./icons/JavaScript.astro";
 import Node from "./icons/Node.astro";
 import Tailwind from "./icons/Tailwind.astro";
-import Php from "./icons/Php.astro";
+import PHP from "./icons/PHP.astro";
 import MySQL from "./icons/MySQL.astro";
 import Boostrap from "./icons/Boostrap.astro";
 import React from "./icons/React.astro";
@@ -21,7 +21,7 @@ const iconMap = {
   JavaScript: JavaScript,
   "Node.js": Node,
   Tailwind: Tailwind,
-  Php: Php,
+  PHP: PHP,
   MySQL: MySQL,
   Boostrap: Boostrap,
   React: React,
@@ -32,23 +32,49 @@ const iconMap = {
 
 // Mapeo de imagenes
 const imgMap = {
+  // Agua Maxima
+  "agua-maxima-logo": "/agua-maxima/agua-maxima.webp",
   "agua-maxima-render-1": "/agua-maxima/agua-maxima-render-1.webp",
   "agua-maxima-render-2": "/agua-maxima/agua-maxima-render-2.webp",
   "agua-maxima-render-3": "/agua-maxima/agua-maxima-render-3.webp",
-  "bimo-render-1": "/bimo/bimo-render-1.webp",
-  "bimo-render-2": "/bimo/bimo-render-2.webp",
+
+  // Bimo Almacen
+  "bimo-logo": "/bimo/bimo-logo.png",
+  "bimo-almacen-landing": "/bimo/almacen/bimo-almacen-landing.webp",
+  "bimo-almacen-catalogos-1": "/bimo/almacen/bimo-almacen-catalogos-1.webp",
+  "bimo-almacen-render-3": "/bimo/almacen/bimo-almacen-render-3.webp",
+
+  // Bimo RH
+  "bimo-rh-logo": "/bimo/rh/bimo-rh-logo.png",
+  "bimo-rh-render-1": "/bimo/rh/bimo-rh-render-1.webp",
+  "bimo-rh-render-2": "/bimo/rh/bimo-rh-render-2.webp",
+  "bimo-rh-render-3": "/bimo/rh/bimo-rh-render-3.webp",
 };
 
 // Renderizar datos de la coleccion de astro
 import { getCollection } from "astro:content";
 
 const projects = await getCollection("projects");
+// Ordenar proyectos por el campo order
+const sortedProjects = projects.sort((a, b) => a.data.order - b.data.order);
 ---
 
 {
-  projects.map((project, index) => {
+  sortedProjects.map((project, index) => {
     const { slug, data } = project;
-    const { title, description, logo, imgs, link_demo, tecnologias } = data;
+    const {
+      title,
+      description,
+      logo,
+      imgs,
+      link_demo,
+      tecnologias,
+      esPersonal,
+      approach,
+      active,
+      deliverables,
+    } = data;
+    if (active === false) return null;
     return (
       <div class="col-span-1 py-4">
         <a
@@ -56,11 +82,12 @@ const projects = await getCollection("projects");
           class="block w-full bg-transparent rounded-[18px] no-underline relative group hover:border-gray-300 dark:hover:border-[rgba(255,255,255,0.2)] transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-lg"
         >
           <div class="w-full rounded-[18px] p-8 relative overflow-hidden">
-            <div class="max-w-full h-auto bg-gray-100 dark:bg-[#1c1c21] justify-center items-center mb-8 flex border border-gray-200 dark:border-gray-700 shadow-lg rounded-[18px] overflow-hidden hover:shadow-[15px_15px_30px_rgb(25,25,25),-15px_-15px_30px_rgb(60,60,60)] transition-all duration-300">
+            <div class="max-w-full h-auto bg-gray-100 dark:bg-[#1c1c21] justify-center items-center mb-8 flex border border-gray-200 dark:border-gray-700 shadow-lg rounded-[18px] overflow-hidden group-hover:shadow-[15px_15px_30px_rgb(25,25,25),-15px_-15px_30px_rgb(60,60,60)] transition-all duration-300">
               <img
-                src={imgMap[imgs[0] as keyof typeof imgMap]}
+                transition:name={`img-main-${slug}`}
+                src={imgMap[imgs.main as keyof typeof imgMap]}
                 alt={title}
-                class="inline-block rounded-[18px] hover:scale-[1.02] transition-all duration-300"
+                class="inline-block rounded-[18px] group-hover:scale-[1.02] transition-all duration-300"
               />
             </div>
             <h1
@@ -78,7 +105,7 @@ const projects = await getCollection("projects");
                   const IconComponent =
                     iconMap[tecnologia as keyof typeof iconMap];
                   return IconComponent ? (
-                    <IconComponent class="size-5 text-gray-500 dark:text-gray-400 hover:scale-110 transition-all duration-300 cursor-pointer" />
+                    <IconComponent class="size-5 text-gray-500 dark:text-gray-400 group-hover:scale-110 transition-all duration-300 cursor-pointer" />
                   ) : (
                     <span class="px-2 py-1 bg-gray-100 dark:bg-gray-800 text-xs text-gray-600 dark:text-gray-400 rounded">
                       {tecnologia}
