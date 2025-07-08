@@ -3,6 +3,11 @@ import Home from "./icons/Home.astro";
 import Projects from "./icons/Projects.astro";
 import Brush from "./icons/Brush.astro";
 import SuitCase from "./icons/SuitCase.astro";
+import ArrowBackUp from "./icons/ArrowBackUp.astro";
+import ArrowUp from "./icons/ArrowUp.astro";
+
+// Detectar si estamos en una página de proyecto
+const isProjectPage = Astro.url.pathname.startsWith("/proyectos/");
 ---
 
 <div
@@ -14,63 +19,79 @@ import SuitCase from "./icons/SuitCase.astro";
     <div
       class="py-2 px-2 flex gap-2 rounded-xl bg-[#121212]/80 backdrop-blur-sm hover:shadow-xl hover:border-gray-300 dark:hover:border-[rgba(255,255,255,0.2)] transition-all duration-300 border border-gray-200 dark:border-gray-800 shadow-lg"
     >
-      <div class="group relative cursor-pointer">
-        <a href="#home">
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300"
-          >
-            <Home />
-          </div>
-        </a>
-        <span
-          class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]"
-        >
-          Inicio
-        </span>
-      </div>
+      {
+        isProjectPage ? (
+          // Header para páginas de proyecto
+          <>
+            <div class="group relative cursor-pointer">
+              <button onclick="window.scrollTo({ top: 0, behavior: 'smooth' })">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300 cursor-pointer">
+                  <ArrowUp />
+                </div>
+              </button>
+              <span class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]">
+                Arriba
+              </span>
+            </div>
 
-      <div class="group relative cursor-pointer">
-        <a href="#experience">
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300"
-          >
-            <SuitCase />
-          </div>
-        </a>
-        <span
-          class="absolute flex flex-row -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]"
-        >
-          Experiencia
-        </span>
-      </div>
+            <div class="group relative cursor-pointer">
+              <a href="/index.html#projects">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300 cursor-pointer">
+                  <ArrowBackUp />
+                </div>
+              </a>
+              <span class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]">
+                Volver
+              </span>
+            </div>
+          </>
+        ) : (
+          // Header original para páginas principales
+          <>
+            <div class="group relative cursor-pointer">
+              <a href="#home">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300">
+                  <Home />
+                </div>
+              </a>
+              <span class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]">
+                Inicio
+              </span>
+            </div>
 
-      <div class="group relative cursor-pointer">
-        <a href="#projects">
-          <div
-            class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300"
-          >
-            <Projects />
-          </div>
-        </a>
-        <span
-          class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]"
-        >
-          Proyectos
-        </span>
-      </div>
+            <div class="group relative cursor-pointer">
+              <a href="#experience">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300">
+                  <SuitCase />
+                </div>
+              </a>
+              <span class="absolute flex flex-row -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]">
+                Experiencia
+              </span>
+            </div>
 
-      <div class="group relative cursor-pointer">
-        <div
-          class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300"
-        >
-          <Brush />
-        </div>
-        <span
-          class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]"
-        >
-          Tema
-        </span>
-      </div>
+            <div class="group relative cursor-pointer">
+              <a href="#projects">
+                <div class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300">
+                  <Projects />
+                </div>
+              </a>
+              <span class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]">
+                Proyectos
+              </span>
+            </div>
+
+            <div class="group relative cursor-pointer">
+              <div class="flex h-10 w-10 items-center justify-center rounded-lg hover:bg-blue-50 hover:text-[#121212] transition-colors duration-300">
+                <Brush />
+              </div>
+              <span class="absolute -top-12 left-[50%] -translate-x-[50%] z-20 origin-bottom scale-0 px-3 py-1.5 rounded-lg border border-gray-200 bg-white text-xs font-medium shadow-lg transition-all duration-300 ease-in-out group-hover:scale-100 before:absolute before:bottom-[-5px] before:left-[50%] before:-translate-x-[50%] before:border-[6px] before:border-transparent before:border-t-white text-[#121212]">
+                Tema
+              </span>
+            </div>
+          </>
+        )
+      }
     </div>
   </div>
 </div>
