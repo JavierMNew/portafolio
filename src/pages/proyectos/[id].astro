@@ -17,6 +17,9 @@ import Netlify from "../../components/icons/Netlify.astro";
 import ArrowRight from "../../components/icons/ArrowRight.astro";
 import Quote from "../../components/icons/Quote.astro";
 import Close from "../../components/icons/Close.astro";
+import GitHub from "../../components/icons/GitHub.astro";
+import Link from "../../components/icons/Link.astro";
+import Items from "../../components/icons/Items.astro";
 
 //Transitions
 import { fade } from "astro:transitions";
@@ -33,6 +36,7 @@ const iconMap = {
   Laravel: Laravel,
   TypeScript: TypeScript,
   Netlify: Netlify,
+  Items: Items,
 };
 
 // Mapeo de imagenes
@@ -57,6 +61,7 @@ const imgMap = {
   "bimo-rh-render-3": "/bimo/rh/bimo-rh-render-3.webp",
 };
 
+
 import { getCollection, render } from "astro:content";
 
 export async function getStaticPaths() {
@@ -74,7 +79,7 @@ const {
   title,
   description,
   imgs,
-  link_demo,
+  links,
   tecnologias,
   esPersonal,
   approach,
@@ -102,10 +107,72 @@ const { Content } = await render(project);
       >
         <Close />
       </button>
+      <nav class="flex gap-2 mt-4 flex-wrap">
+        <a
+          class="bg-white/5
+         border border-gray-700 rounded-full
+         flex justify-center items-center
+         py-2 px-4
+         text-xs md:text-base
+         transition hover:bg-white/10
+         group text-[#f5f5f5]"
+          href={links.demo}
+          target="_blank"
+        >
+          Ver demo
+          <div
+            class="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 *:size-4 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-right"
+              ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+            >
+          </div>
+        </a>
+        <a
+          class="bg-white/5
+         border border-gray-700 rounded-full
+         flex justify-center items-center
+         py-2 px-4
+         text-xs md:text-base
+         transition hover:bg-white/10
+         group text-[#f5f5f5]"
+          href={links.github}
+          target="_blank"
+        >
+          Ver código
+          <div
+            class="w-0 translate-x-[100%] pl-0 opacity-0 transition-all duration-200 *:size-4 group-hover:w-5 group-hover:translate-x-0 group-hover:pl-2 group-hover:opacity-100"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="24"
+              height="24"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="lucide lucide-arrow-right"
+              ><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg
+            >
+          </div>
+        </a>
+      </nav>
     </div>
   </div>
 
-  <SectionContainer class="mx-auto max-w-[800px] pb-32">
+  <SectionContainer class="mx-auto max-w-[800px]">
     {
       esPersonal === true ? (
         <div class="py-12 space-y-4">
@@ -207,21 +274,29 @@ const { Content } = await render(project);
             <div class="grid grid-cols-2 gap-y-14 col-span-full">
               {deliverables?.map((deliverable) => {
                 return (
-                  <div class="relative w-full rounded-2xl overflow-hidden col-span-full">
+                  <div class="relative w-full rounded-2xl overflow-hidden col-span-full custom-gradient-bg group cursor-pointer transition-all duration-300 hover:shadow-[inset_0_0_50px_rgba(0,0,0,0.3)]">
                     {deliverable.img && (
+                      <div class="relative flex flex-col gap-4 px-6 pb-2 pt-6 md:gap-2 md:px-8 md:pb-4 md:pt-8">
+                      <h1 class="text-gray-500 dark:text-[#F5F5F5] text-3xl font-light ">
+                        {deliverable.title}
+                      </h1>
+                      <p class="text-center text-sm font-medium text-white md:text-justify">{deliverable.description}</p>
+                    </div>
                       <img
-                        class="rounded w-full h-auto cursor-zoom-in zoomable-image"
+                        class="w-full h-auto zoomable-image px-20 translate-y-[10px] group-hover:translate-y-[0px] transition-all duration-300 rounded-xl"
                         src={imgMap[deliverable.img as keyof typeof imgMap]}
                         alt={`${title} - Imagen ${deliverable.title}`}
                       />
                     )}
                   </div>
+                  <h2 class="text-gray-500 dark:text-[#F5F5F5] text-lg font-medium">
+                    Características principales
+                  </h2>
                   <div class="prose dark:prose-invert">
-                    <h3 class="text-gray-500 dark:text-[#F5F5F5] text-lg font-light flex items-center">
-                      <Quote /> {deliverable.title}
-                    </h3>
+                    {deliverable.features?.map((feature) => {
+                      return <p>• {feature}</p>;
+                    })}
                   </div>
-                  <div class="prose dark:prose-invert">{deliverable.description}</div>
                 );
               })}
             </div>
@@ -249,6 +324,7 @@ const { Content } = await render(project);
         modalImage.src = imgElement.src;
         modalImage.alt = imgElement.alt;
         modal.style.opacity = "1";
+        modal.style.transform = "scale(1.05)";
         modal.classList.remove("hidden");
         modal.classList.add("flex");
         document.body.style.overflow = "hidden";
@@ -293,8 +369,7 @@ const { Content } = await render(project);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
   }
 
-  /* .zoomable-image:hover {
-    transform: scale(1.02);
-    transition: transform 0.3s ease;
-  } */
+  .custom-gradient-bg {
+    background-image: linear-gradient(to right top, #121212, #1c1f25, #1e2d39, #163d4c, #004e59);
+  }
 </style>

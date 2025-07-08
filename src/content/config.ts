@@ -9,7 +9,10 @@ const projects = defineCollection({
       main: z.string(),
       others: z.array(z.string()).optional(),
     }),
-    link_demo: z.string().url(),
+    links: z.object({
+      demo: z.string().url().optional(),
+      github: z.string().url().optional(),
+    }),
     tecnologias: z.array(z.string()),
     esPersonal: z.boolean(),
     approach: z.string().optional(),
@@ -19,7 +22,14 @@ const projects = defineCollection({
       title: z.string(),
       description: z.string(),
       img: z.string().optional(),
-    })).min(1),
+      features: z.array(z.string()).optional(),
+      technologies: z.array(z.string()).optional(),
+      metrics: z.array(z.object({
+        label: z.string(),
+        value: z.string(),
+        icon: z.string().optional(),
+      })).optional(),
+    })).min(1).max(3),
   }),
 });
 

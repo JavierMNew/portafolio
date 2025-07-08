@@ -5,7 +5,10 @@ import Brush from "./icons/Brush.astro";
 import SuitCase from "./icons/SuitCase.astro";
 ---
 
-<div class="fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50">
+<div
+  id="header"
+  class="fixed bottom-4 left-1/2 -translate-x-1/2 transform z-50 transition-all duration-300 ease-in-out"
+>
   <div class="flex flex-col items-center bg-gradient-to-b rounded-xl shadow-xl">
     <!-- Fondo de la tarjeta -->
     <div
@@ -71,3 +74,48 @@ import SuitCase from "./icons/SuitCase.astro";
     </div>
   </div>
 </div>
+
+<script>
+  let headerObserver: IntersectionObserver | null = null;
+
+  function initializeHeaderBehavior() {
+    const header = document.getElementById("header");
+    const footer = document.getElementById("footer");
+
+    if (!header || !footer) return;
+
+    if (headerObserver) {
+      headerObserver.disconnect();
+    }
+
+    header.style.transform = "translateY(0)";
+    header.style.opacity = "1";
+    header.style.pointerEvents = "auto";
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "0px",
+      threshold: 0.1,
+    };
+
+    headerObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          header.style.opacity = "0";
+          header.style.transform = "translateY(100%)";
+          header.style.pointerEvents = "none";
+        } else {
+          header.style.opacity = "1";
+          header.style.transform = "translateY(0)";
+          header.style.pointerEvents = "auto";
+        }
+      });
+    }, observerOptions);
+
+    headerObserver.observe(footer);
+  }
+
+  document.addEventListener("DOMContentLoaded", initializeHeaderBehavior);
+
+  document.addEventListener("astro:page-load", initializeHeaderBehavior);
+</script>
