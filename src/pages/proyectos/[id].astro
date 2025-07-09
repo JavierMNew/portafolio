@@ -20,6 +20,7 @@ import Close from "../../components/icons/Close.astro";
 import GitHub from "../../components/icons/GitHub.astro";
 import Link from "../../components/icons/Link.astro";
 import Items from "../../components/icons/Items.astro";
+import VerticalLine from "../../components/icons/VerticalLine.astro";
 
 //Transitions
 import { fade } from "astro:transitions";
@@ -273,12 +274,18 @@ const { Content } = await render(project);
                       />
                     )}
                   </div>
-                  <h2 class="text-gray-500 dark:text-[#F5F5F5] text-lg font-medium">
-                    Características principales
-                  </h2>
-                  <div class="prose dark:prose-invert">
-                    {deliverable.features?.map((feature) => {
-                      return <p>• {feature}</p>;
+                  <div class="col-span-full grid grid-cols-1 md:grid-cols-3 gap-4">
+                    {deliverable.metrics?.map((metric) => {
+                      return (
+                        <div class="bg-gray-50 dark:bg-gray-800/50 rounded-lg p-4 text-center">
+                          <div class="text-2xl font-bold text-gray-900 dark:text-[#F5F5F5]">
+                            {metric.value}
+                          </div>
+                          <div class="text-sm text-gray-600 dark:text-gray-400 mt-1">
+                            {metric.label}
+                          </div>
+                        </div>
+                      );
                     })}
                   </div>
                 );

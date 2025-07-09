@@ -22,7 +22,11 @@ const projects = defineCollection({
       title: z.string(),
       description: z.string(),
       img: z.string().optional(),
-      features: z.array(z.string()).optional(),
+      features: z.array(z.object({
+        title: z.string().optional(),
+        description: z.string().optional(),
+        })
+      ).optional(),
       technologies: z.array(z.string()).optional(),
       metrics: z.array(z.object({
         label: z.string(),

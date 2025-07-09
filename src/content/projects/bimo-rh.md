@@ -18,10 +18,10 @@ deliverables:
     description: "Landing page completamente responsiva con diseño atractivo y optimizada para dispositivos móviles y desktop."
     img: "agua-maxima-render-1"
     features:
-      - "Diseño 100% responsivo"
-      - "Interfaz intuitiva y moderna"
-      - "Optimización para móviles"
-      - "Carga rápida y eficiente"
+      - title: "Seguimiento de niveles mínimos/máximos"
+        description: "Control de stock mínimo y máximo por producto"
+      - title: "Reportes de movimientos detallados"
+        description: "Histórico completo de entradas y salidas"
     technologies: ["Astro", "Tailwind", "TypeScript"]
     metrics:
       - label: "Tiempo de carga"
@@ -32,10 +32,10 @@ deliverables:
     description: "Integración directa con WhatsApp y correo electrónico para facilitar el contacto y pedidos de clientes."
     img: "agua-maxima-render-2"
     features:
-      - "Botón de WhatsApp flotante"
-      - "Formulario de contacto por email"
-      - "Mensajes pre-configurados"
-      - "Información de contacto visible"
+      - title: "Seguimiento de niveles mínimos/máximos"
+        description: "Control de stock mínimo y máximo por producto"
+      - title: "Reportes de movimientos detallados"
+        description: "Histórico completo de entradas y salidas"
     technologies: ["JavaScript", "EmailJS", "WhatsApp API"]
     metrics:
       - label: "Conversiones"
@@ -46,10 +46,10 @@ deliverables:
     description: "Sitio web optimizado para SEO y desplegado en Netlify con certificado SSL y dominio personalizado."
     img: "agua-maxima-render-3"
     features:
-      - "Optimización SEO completa"
-      - "Despliegue automatizado"
-      - "Certificado SSL incluido"
-      - "CDN global de Netlify"
+      - title: "Seguimiento de niveles mínimos/máximos"
+        description: "Control de stock mínimo y máximo por producto"
+      - title: "Reportes de movimientos detallados"
+        description: "Histórico completo de entradas y salidas"
     technologies: ["Netlify", "Node.js", "Git"]
     metrics:
       - label: "Puntuación SEO"
