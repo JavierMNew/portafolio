@@ -77,6 +77,7 @@ export async function getStaticPaths() {
 const { project } = Astro.props;
 const { slug, data } = project;
 const {
+  company,
   title,
   description,
   imgs,
@@ -216,7 +217,12 @@ const { Content } = await render(project);
         </div>
       ) : (
         <div class="py-12 space-y-4">
-          <h2 class="text-gray-500 dark:text-[#F5F5F5] text-sm">PROYECTO</h2>
+          <div class="flex items-center gap-x-2 justify-between">
+            <h2 class="text-gray-500 dark:text-[#F5F5F5] text-sm">PROYECTO</h2>
+            <span class="text-gray-500 dark:text-[#F5F5F5] text-sm">
+              {company}
+            </span>
+          </div>
           <h1
             transition:name={`title-${slug}`}
             class="animate-text-gradient inline-flex bg-gradient-to-r from-gray-900 via-gray-600 to-gray-500 bg-[200%_auto] bg-clip-text leading-tight text-transparent dark:from-[#f5f5f5] dark:via-slate-400 dark:to-neutral-400 font-medium text-6xl"

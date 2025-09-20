@@ -1,5 +1,6 @@
 ---
-title: Bimo - Sistema ERP de Gestión de Almacén
+company: BIMO
+title: Sistema de Gestión de Inventario ERP
 description: Módulo ERP personalizado para Bimo, empresa de biología molecular. Desarrollé componentes clave como gestión de artículos, movimientos, requisiciones y control de accesos por roles.
 logo: /bimo-logo.png
 imgs:
@@ -69,6 +70,6 @@ deliverables:
         value: "8"
 ---
 
-Módulo ERP enfocado en el área de almacén para **BIMO** (Biología Molecular y Análisis Clínicos), empresa reconocida por sus servicios de diagnóstico en Villahermosa, Tabasco. Este módulo incluye gestión de artículos, movimientos internos, requisiciones por área y control de permisos según rol.
+Módulo ERP enfocado en el área de almacén para **BIMO** (Biología Molecular y Análisis Clínicos), empresa reconocida por sus servicios de diagnóstico en Villahermosa, Tabasco. Este módulo incluye gestión de artículos, movimientos internos, requisiciones por área, órdenes de compra y control de permisos según rol.
 
 El desarrollo fue realizado con tecnologías como PHP, JavaScript y MySQL, permitiendo mejorar la eficiencia operativa mediante un sistema robusto y adaptable a las necesidades internas de la empresa. El sistema maneja más de 500 productos médicos, incluyendo reactivos, consumibles y equipos de laboratorio, con un flujo de trabajo optimizado que reduce los tiempos de procesamiento en un 70% y disminuye los faltantes de inventario en un 40%.

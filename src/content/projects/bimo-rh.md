@@ -1,4 +1,5 @@
 ---
+company: BIMO
 title: Bimo - Sistema ERP de Recursos Humanos
 description: Módulo ERP completo para gestión de personal, reclutamiento y requisiciones de vacantes desarrollado para Bimo, empresa líder en biología molecular y análisis clínicos en Tabasco.
 logo: /bimo-logo.png

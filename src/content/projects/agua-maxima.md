@@ -1,5 +1,6 @@
 ---
-title: Agua Máxima - Landing
+company: Agua Máxima 
+title: Landing page
 description: Sitio web responsivo y moderno para Agua Máxima, empresa purificadora de agua. La landing permite contactar mediante correo electrónico y realizar pedidos rápidos vía WhatsApp.
 logo: /agua-maxima-logo
 imgs: 
