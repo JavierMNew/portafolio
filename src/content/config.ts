@@ -34,7 +34,7 @@ const projects = defineCollection({
         value: z.string(),
         icon: z.string().optional(),
       })).optional(),
-    })).min(1).max(3),
+    })).min(1).max(5),
   }),
 });
 

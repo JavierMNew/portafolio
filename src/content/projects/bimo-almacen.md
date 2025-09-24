@@ -16,7 +16,7 @@ order: 2
 active: true
 deliverables:
   - title: "Sistema de Gestión de Artículos"
-    description: "Módulo completo para alta, baja y modificación de productos con control de categorías, proveedores y especificaciones técnicas."
+    description: "Módulo completo para alta, baja, modificación y vista de productos con control de categorías, proveedores y especificaciones técnicas."
     img: "bimo-almacen-vista-inventarios"
     features:
       - title: "Catálogo completo de artículos"
@@ -34,7 +34,7 @@ deliverables:
         value: "25"
       - label: "Proveedores registrados"
         value: "15+"
-  - title: "Control de Inventarios en Tiempo Real"
+  - title: "Sistema de Gestión de Movimientos"
     description: "Dashboard con monitoreo automático de stock, alertas de productos críticos y seguimiento de niveles mínimos y máximos."
     img: "bimo-almacen-vista-movimientos"
     features:
@@ -68,6 +68,40 @@ deliverables:
         value: "200+/mes"
       - label: "Áreas atendidas"
         value: "8"
+  - title: "Sistema de Órdenes de Compra Automatizado"
+    description: "Módulo para la generación, validación y seguimiento de órdenes de compra con aprobaciones escalonadas y control de proveedores."
+    img: "bimo-almacen-vista-ordenes"
+    features:
+      - title: "Flujo de aprobación multinivel"
+        description: "Sistema de aprobaciones escalonadas según el tipo de producto y valor de la requisición."
+      - title: "Seguimiento de niveles mínimos/máximos"
+        description: "Control automático de stock mínimo y máximo por producto con alertas preventivas."
+      - title: "Reportes de movimientos detallados"
+        description: "Histórico completo de entradas y salidas con filtros por fecha, área y tipo de movimiento."
+    metrics:
+      - label: "Tiempo de procesamiento"
+        value: "70% menos"
+      - label: "Órdenes de compra procesadas"
+        value: "200+/mes"
+      - label: "Áreas atendidas"
+        value: "14"
+  - title: "Sistema de Gestión de Proveedores"
+    description: "Módulo para el registro, control y evaluación de proveedores, con integración a requisiciones y órdenes de compra."
+    img: "bimo-almacen-vista-proveedores"
+    features:
+      - title: "Flujo de aprobación multinivel"
+        description: "Sistema de aprobaciones escalonadas según el tipo de producto y valor de la requisición."
+      - title: "Seguimiento de niveles mínimos/máximos"
+        description: "Control automático de stock mínimo y máximo por producto con alertas preventivas."
+      - title: "Reportes de movimientos detallados"
+        description: "Histórico completo de entradas y salidas con filtros por fecha, área y tipo de movimiento."
+    metrics:
+      - label: "Proveedores activos"
+        value: "15+"
+      - label: "Órdenes vinculadas"
+        value: "200+/mes"
+      - label: "Áreas de abastecimiento"
+        value: "14"
 ---
 
 Módulo ERP enfocado en el área de almacén para **BIMO** (Biología Molecular y Análisis Clínicos), empresa reconocida por sus servicios de diagnóstico en Villahermosa, Tabasco. Este módulo incluye gestión de artículos, movimientos internos, requisiciones por área, órdenes de compra y control de permisos según rol.
