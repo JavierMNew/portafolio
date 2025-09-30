@@ -13,7 +13,7 @@ tecnologias: ["Astro", "JavaScript", "TypeScript", "Node.js", "Tailwind", "Netli
 esPersonal: true
 approach: La empresa es de mi padre.
 order: 1
-active: true
+active: false
 deliverables:
   - title: "Diseño Responsivo y Moderno"
     description: "Landing page completamente responsiva con diseño atractivo y optimizada para dispositivos móviles y desktop."
