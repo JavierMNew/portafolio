@@ -16,7 +16,7 @@ active: true
 deliverables:
   - title: "Pantalla de Login"
     description: "Interfaz para el inicio de sesión de usuarios registrados. Incluye validación de credenciales y conexión a la base de datos mediante JDBC."
-    img: "loteria-login"
+    img: "loteria-mexicana-vista-login"
     features:
       - title: "Validación de usuario"
         description: "Verifica credenciales y muestra mensajes de error claros."
@@ -25,7 +25,7 @@ deliverables:
 
   - title: "Pantalla de Registro"
     description: "Formulario de creación de cuenta para nuevos jugadores con validaciones básicas y almacenamiento de datos en la base de datos."
-    img: "loteria-registro"
+    img: "loteria-mexicana-vista-register"
     features:
       - title: "Registro de nuevos usuarios"
         description: "Inserta información en la tabla de usuarios con JDBC."
